@@ -1,0 +1,44 @@
+
+-- Read Uncommitted (Allows Dirty Reads)
+SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+START TRANSACTION;
+
+SELECT * FROM covid_cases
+WHERE country = 'India';
+
+COMMIT;
+
+
+-- Read Committed (Prevents Dirty Reads)
+SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+START TRANSACTION;
+
+SELECT * FROM covid_cases
+WHERE country = 'India';
+
+COMMIT;
+
+
+-- Repeatable Read (Prevents Non-repeatable Reads)
+SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+START TRANSACTION;
+
+SELECT * FROM covid_cases
+WHERE country = 'India';
+
+COMMIT;
+
+
+
+-- Serializable (Prevents Phantom Reads)
+SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+START TRANSACTION;
+
+SELECT * FROM covid_cases
+WHERE confirmed > 100000;
+
+COMMIT;
