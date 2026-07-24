@@ -1,0 +1,11 @@
+
+SELECT
+    c.country_name,
+    cc.report_date,
+    cc.confirmed
+FROM covid_cases cc
+INNER JOIN countries c
+ON cc.country_id = c.country_id
+WHERE cc.report_date = '2021-06-01'
+ORDER BY cc.confirmed DESC
+LIMIT 1;
